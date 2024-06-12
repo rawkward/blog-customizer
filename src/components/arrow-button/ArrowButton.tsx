@@ -7,14 +7,14 @@ export type TOnClick = () => void;
 
 export interface ArrowButtonProps {
 	onClick: TOnClick;
-	isOpen: boolean;
+	isMenuOpen: boolean;
 }
 
-export const ArrowButton = ({ onClick, isOpen }: ArrowButtonProps) => {
+export const ArrowButton = ({ onClick, isMenuOpen }: ArrowButtonProps) => {
 	return (
 		/* Не забываем указаывать role и aria-label атрибуты для интерактивных элементов */
 		<div
-			className={`${styles.container} ${isOpen ? styles.container_open : ''}`}
+			className={`${styles.container} ${isMenuOpen ? styles.container_open : ''}`}
 			role='button'
 			aria-label='Открыть/Закрыть форму параметров статьи'
 			tabIndex={0}
@@ -22,7 +22,7 @@ export const ArrowButton = ({ onClick, isOpen }: ArrowButtonProps) => {
 			<img
 				src={arrow}
 				alt='иконка стрелочки'
-				className={`${styles.arrow} ${isOpen ? styles.arrow_open : ''}`}
+				className={`${styles.arrow} ${isMenuOpen ? styles.arrow_open : ''}`}
 			/>
 		</div>
 	);

@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 
 type UseOutsideMousedownClose = {
-	isOpen: boolean;
+	isMenuOpen: boolean;
 	onChange: (newValue: boolean) => void;
 	onClose?: () => void;
 	rootRef: React.RefObject<HTMLDivElement>;
 };
 
 export const useOutsideMousedownClose = ({
-	isOpen,
+	isMenuOpen,
 	rootRef,
 	onClose,
 	onChange,
@@ -17,7 +17,7 @@ export const useOutsideMousedownClose = ({
 		const handleMousedown = (event: MouseEvent) => {
 			const { target } = event;
 			if (target instanceof Node && !rootRef.current?.contains(target)) {
-				isOpen && onClose?.();
+				isMenuOpen && onClose?.();
 				onChange?.(false);
 			}
 		};
@@ -27,5 +27,5 @@ export const useOutsideMousedownClose = ({
 		return () => {
 			window.removeEventListener('mousedown', handleMousedown);
 		};
-	}, [onClose, onChange, isOpen]);
+	}, [onClose, onChange, isMenuOpen]);
 };

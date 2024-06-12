@@ -28,16 +28,16 @@ export const ArticleParamsForm = ({
 }: ArticleParamsFormProps) => {
 	const [settings, setSettings] = useState(defaultArticleState);
 
-	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
 	const ref = useRef<HTMLDivElement | null>(null);
 
-	const toggleForm = () => setIsOpen(!isOpen);
+	const toggleForm = () => setIsMenuOpen(!isMenuOpen);
 
-	const closeForm = () => setIsOpen(false);
+	const closeForm = () => setIsMenuOpen(false);
 
 	useOutsideMousedownClose({
-		isOpen,
+		isMenuOpen,
 		onChange: closeForm,
 		rootRef: ref,
 	});
@@ -62,9 +62,9 @@ export const ArticleParamsForm = ({
 
 	return (
 		<>
-			<ArrowButton onClick={toggleForm} isOpen={isOpen} />
+			<ArrowButton onClick={toggleForm} isMenuOpen={isMenuOpen} />
 			<aside
-				className={`${styles.container} ${isOpen ? styles.container_open : ''}`}
+				className={`${styles.container} ${isMenuOpen ? styles.container_open : ''}`}
 				ref={ref}>
 				<form
 					className={styles.form}
@@ -74,22 +74,24 @@ export const ArticleParamsForm = ({
 						Задайте параметры
 					</Text>
 
-					<Text
-						as='label'
-						htmlFor='selectFontFamily'
-						size={12}
-						weight={800}
-						uppercase
-						dynamicLite>
-						Шрифт
-					</Text>
-					<Select
-						selected={settings.fontFamilyOption}
-						options={fontFamilyOptions}
-						id='selectFontFamily'
-						onChange={handleSettingChange}
-						name='fontFamilyOption'
-					/>
+					<div className={styles.field_container}>
+						<Text
+							as='label'
+							htmlFor='selectFontFamily'
+							size={12}
+							weight={800}
+							uppercase
+							dynamicLite>
+							Шрифт
+						</Text>
+						<Select
+							selected={settings.fontFamilyOption}
+							options={fontFamilyOptions}
+							id='selectFontFamily'
+							onChange={handleSettingChange}
+							name='fontFamilyOption'
+						/>
+					</div>
 
 					<RadioGroup
 						options={fontSizeOptions}
@@ -99,58 +101,65 @@ export const ArticleParamsForm = ({
 						name='fontSizeOption'
 					/>
 
-					<Text
-						as='label'
-						htmlFor='selectFontColor'
-						size={12}
-						weight={800}
-						uppercase
-						dynamicLite>
-						Цвет шрифта
-					</Text>
-					<Select
-						selected={settings.fontColor}
-						options={fontColors}
-						id='selectFontColor'
-						onChange={handleSettingChange}
-						name='fontColor'
-					/>
+					<div className={styles.field_container}>
+						<Text
+							as='label'
+							htmlFor='selectFontColor'
+							size={12}
+							weight={800}
+							uppercase
+							dynamicLite>
+							Цвет шрифта
+						</Text>
+						<Select
+							selected={settings.fontColor}
+							options={fontColors}
+							id='selectFontColor'
+							onChange={handleSettingChange}
+							name='fontColor'
+						/>
+					</div>
 
 					<Separator />
 
-					<Text
-						as='label'
-						htmlFor='selectBackgroundColor'
-						size={12}
-						weight={800}
-						uppercase
-						dynamicLite>
-						Цвет фона
-					</Text>
-					<Select
-						selected={settings.backgroundColor}
-						options={backgroundColors}
-						id='selectBackgroundColor'
-						onChange={handleSettingChange}
-						name='backgroundColor'
-					/>
+					<div className={styles.field_container}>
+						<Text
+							as='label'
+							htmlFor='selectBackgroundColor'
+							size={12}
+							weight={800}
+							uppercase
+							dynamicLite>
+							Цвет фона
+						</Text>
+						<Select
+							selected={settings.backgroundColor}
+							options={backgroundColors}
+							id='selectBackgroundColor'
+							onChange={handleSettingChange}
+							name='backgroundColor'
+						/>
+					</div>
 
-					<Text
-						as='label'
-						htmlFor='selectContentWidth'
-						size={12}
-						weight={800}
-						uppercase
-						dynamicLite>
-						Ширина контента
-					</Text>
-					<Select
-						selected={settings.contentWidth}
-						options={contentWidthArr}
-						id='selectContentWidth'
-						onChange={handleSettingChange}
-						name='contentWidth'
-					/>
+					<div className={styles.field_container}>
+						<Text
+							as='label'
+							htmlFor='selectContentWidth'
+							size={12}
+							weight={800}
+							uppercase
+							dynamicLite>
+							Ширина контента
+						</Text>
+						<Select
+							selected={settings.contentWidth}
+							options={contentWidthArr}
+							id='selectContentWidth'
+							onChange={handleSettingChange}
+							name='contentWidth'
+						/>
+					</div>
+					
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' type='reset' />
 						<Button title='Применить' type='submit' />
