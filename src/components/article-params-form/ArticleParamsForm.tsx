@@ -27,7 +27,6 @@ export const ArticleParamsForm = ({
 	handleSettingsChange,
 }: ArticleParamsFormProps) => {
 	const [settings, setSettings] = useState(defaultArticleState);
-	console.log(settings);
 
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
